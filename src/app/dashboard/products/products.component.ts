@@ -121,7 +121,7 @@ export class ProductsComponent {
     this.dashboardService.getAllProducts().subscribe({
       next: (data: any[]) => {
         console.log('loaded products', data);
-        // this.products = data;
+        this.products = data;
       },
       error: (err) => console.error('Failed to load products', err),
     });
@@ -135,16 +135,23 @@ export class ProductsComponent {
   }
 
   onModalSave(newProd: any) {
-    // optimistically add to list
-    this.products = [newProd, ...this.products];
-    // optionally call API if implemented
+    // Call API to create product and update table on success
     const svc: any = this.dashboardService as any;
     if (svc.createProduct) {
       svc.createProduct(newProd).subscribe({
-        next: () => console.log('product created'),
-        error: (err: any) => console.error('create failed', err),
+        next: (created: any) => {
+          const toAdd =
+            created && typeof created === 'object' ? created : newProd;
+          this.products = [toAdd, ...this.products];
+          this.showAddModal = false;
+        },
+        error: (err: any) => {
+          console.error('create failed', err);
+        },
       });
+    } else {
+      this.products = [newProd, ...this.products];
+      this.showAddModal = false;
     }
-    this.showAddModal = false;
   }
 }

@@ -21,7 +21,6 @@ export class ProductModalComponent {
   private fb = new FormBuilder();
   productForm: FormGroup = this.fb.group({
     name: ['', [Validators.required]],
-    sku: ['', [Validators.required]],
     price: ['', [Validators.required]],
     stock: ['', [Validators.required]],
     type: [''],
