@@ -21,6 +21,7 @@ export class ProductsComponent {
   products: Array<{
     name: string;
     sku: string;
+    stock: number;
     price: number;
     type: string;
     status: string;
@@ -45,7 +46,7 @@ export class ProductsComponent {
     return this.products.filter((p) => {
       const matchesQ =
         q === '' ||
-        [p.name, p.sku, p.price, p.type, p.status]
+        [p.name, p.sku, p.stock, p.price, p.type, p.status]
           .join(' ')
           .toLowerCase()
           .includes(q);
