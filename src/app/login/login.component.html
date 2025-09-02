@@ -1,0 +1,48 @@
+<div class="login-page">
+  <div class="login-card" role="region" aria-label="Login card">
+    <div class="card-header">
+      <h1 class="brand">Inicia sesión</h1>
+      <p class="subtitle">Ingresa los siguientes datos</p>
+    </div>
+
+    <form [formGroup]="form" class="login-form" (ngSubmit)="onSubmit()">
+      <label class="input-group">
+        <span class="label">Email</span>
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="you@company.com"
+        />
+        <small class="error" *ngIf="email?.touched && email?.invalid">
+          <span *ngIf="email?.errors?.['required']"
+            >El email es obligatorio.</span
+          >
+          <span *ngIf="email?.errors?.['email']"
+            >Formato de email inválido.</span
+          >
+        </small>
+      </label>
+
+      <label class="input-group">
+        <span class="label">Password</span>
+        <input
+          type="password"
+          formControlName="password"
+          placeholder="••••••••"
+        />
+        <small class="error" *ngIf="password?.touched && password?.invalid">
+          <span *ngIf="password?.errors?.['required']"
+            >La contraseña es obligatoria.</span
+          >
+          <span *ngIf="password?.errors?.['minlength']"
+            >Mínimo 6 caracteres.</span
+          >
+        </small>
+      </label>
+
+      <div class="actions">
+        <button type="submit" class="btn-primary">Aceptar</button>
+      </div>
+    </form>
+  </div>
+</div>
