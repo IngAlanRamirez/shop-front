@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   ReactiveFormsModule,
@@ -6,6 +6,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { LoginService } from './login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,8 +18,8 @@ import {
 })
 export class LoginComponent {
   form: FormGroup;
-
-  constructor(private fb: FormBuilder) {
+  loginService = inject(LoginService);
+  constructor(private fb: FormBuilder, private router: Router) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -37,7 +39,14 @@ export class LoginComponent {
       return;
     }
     const payload = this.form.value;
-    // TODO: conectar con servicio de auth.
-    console.log('Login payload', payload);
+    this.loginService.login(payload.email, payload.password).subscribe({
+      next: (user) => {
+        console.log('Login successful', user);
+        this.router.navigate(['/dashboard']);
+      },
+      error: (err) => {
+        console.error('Login failed', err);
+      },
+    });
   }
 }

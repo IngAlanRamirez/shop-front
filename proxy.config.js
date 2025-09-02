@@ -8,6 +8,7 @@ const PROXY_CONFIG = [
       "/products",
       "/users",
       "/sales",
+      "/auth",
     ],
     /*target para dev*/
     target: "http://localhost:3000",
