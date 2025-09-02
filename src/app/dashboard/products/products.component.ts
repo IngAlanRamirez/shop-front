@@ -18,48 +18,13 @@ export class ProductsComponent {
   // modal is now a child component
   showAddModal = false;
 
-  products = [
-    {
-      name: 'Cherry Delight',
-      sku: '#PDZ1240',
-      price: '$20.00',
-      stock: '250 pcs',
-      type: 'Dessert',
-      status: 'Bouncing',
-    },
-    {
-      name: 'Kiwi',
-      sku: '#FTL6553',
-      price: '$12.00',
-      stock: '550 kg',
-      type: 'Fruits',
-      status: 'Active',
-    },
-    {
-      name: 'Mango Magic',
-      sku: '#MGG5515',
-      price: '$100.50',
-      stock: '1200 pcs',
-      type: 'Ice Cream',
-      status: 'Inactive',
-    },
-    {
-      name: 'Blueberry Bliss',
-      sku: '#BLU2211',
-      price: '$150.00',
-      stock: '700 pcs',
-      type: 'Cere',
-      status: 'On Sale',
-    },
-    {
-      name: 'Watermelon',
-      sku: '#WTL4483',
-      price: '$10.99',
-      stock: '220 lb',
-      type: 'Juice',
-      status: 'Pending',
-    },
-  ];
+  products: Array<{
+    name: string;
+    sku: string;
+    price: number;
+    type: string;
+    status: string;
+  }> = [];
 
   // filtros reactivos
   search = new FormControl('');
