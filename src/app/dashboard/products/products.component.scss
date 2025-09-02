@@ -1,0 +1,101 @@
+.products-page {
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+  }
+  .search input {
+    width: 320px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid #e6eef7;
+  }
+
+  .top-actions .btn {
+    margin-left: 10px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    background: #eaf6ff;
+    color: #0b69a3;
+  }
+
+  .top-actions select {
+    margin-left: 8px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid #e6eef7;
+    background: white;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+  }
+  .pagination .controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .pagination button {
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: none;
+    background: #eaf6ff;
+    color: #0b69a3;
+  }
+  .pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .pagination .page {
+    font-weight: 600;
+    color: #23363f;
+  }
+  .top-actions .btn.primary {
+    background: #f3f6fb;
+  }
+  .top-actions .btn.accent {
+    background: linear-gradient(90deg, #1672b9 0%, #4cc0ff 100%);
+    color: white;
+  }
+
+  .products-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .products-table th {
+    text-align: left;
+    color: #6b7b86;
+    font-size: 13px;
+    padding: 10px 8px;
+    border-bottom: 1px solid #eef4fb;
+  }
+  .products-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #f5f9fc;
+    color: #23363f;
+  }
+  .products-table tbody tr:hover {
+    background: #fbfdff;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #eaf6ff;
+    color: #1672b9;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  @media (max-width: 800px) {
+    .search input {
+      width: 160px;
+    }
+  }
+}
