@@ -98,4 +98,83 @@
       width: 160px;
     }
   }
+
+  /* Modal styles */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 20, 30, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1200;
+  }
+  .modal {
+    background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+    padding: 22px;
+    border-radius: 14px;
+    width: 600px;
+    max-width: calc(100% - 36px);
+    box-shadow: 0 18px 50px rgba(16, 24, 40, 0.14);
+    border: 1px solid rgba(11, 105, 163, 0.04);
+  }
+  .modal h3 {
+    margin: 0 0 14px 0;
+    color: #22303a;
+  }
+  .modal .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+  .modal .field label {
+    font-size: 13px;
+    color: #6b7b86;
+  }
+  .modal .field input,
+  .modal .field select {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #eef4fb;
+    background: #fff;
+    color: #23363f;
+  }
+  .modal .field input:focus,
+  .modal .field select:focus {
+    outline: none;
+    box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+  }
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .modal-actions .btn {
+    padding: 8px 14px;
+    border-radius: 10px;
+    border: none;
+    background: #f3f6fb;
+    color: #0b69a3;
+  }
+  .modal-actions .btn.accent {
+    background: linear-gradient(90deg, #1672b9 0%, #4cc0ff 100%);
+    color: white;
+    box-shadow: 0 8px 26px rgba(70, 140, 200, 0.18);
+  }
+
+  @media (max-width: 640px) {
+    .modal {
+      width: calc(100% - 28px);
+      padding: 16px;
+    }
+    .modal .field input,
+    .modal .field select {
+      padding: 8px 10px;
+    }
+    .modal-actions {
+      gap: 8px;
+    }
+  }
 }

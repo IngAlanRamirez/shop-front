@@ -1,0 +1,48 @@
+<div class="modal-backdrop">
+  <div class="modal">
+    <h3>Agregar Producto</h3>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <div class="field">
+        <label>Nombre</label>
+        <input formControlName="name" />
+      </div>
+      <div class="field">
+        <label>SKU</label>
+        <input formControlName="sku" />
+      </div>
+      <div class="field">
+        <label>Precio</label>
+        <input formControlName="price" />
+      </div>
+      <div class="field">
+        <label>Stock</label>
+        <input formControlName="stock" />
+      </div>
+      <div class="field">
+        <label>Tipo</label>
+        <input formControlName="type" />
+      </div>
+      <div class="field">
+        <label>Estado</label>
+        <select formControlName="status">
+          <option value="Active">Activo</option>
+          <option value="Inactive">Inactivo</option>
+          <option value="On Sale">En Venta</option>
+          <option value="Bouncing">Rebotando</option>
+          <option value="Pending">Pendiente</option>
+        </select>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn" (click)="onCancel()">Cancelar</button>
+        <button
+          type="submit"
+          class="btn accent"
+          [disabled]="productForm.invalid"
+        >
+          Guardar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

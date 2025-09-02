@@ -13,7 +13,9 @@
         <option value="Pending">Pendiente</option>
       </select>
 
-      <button class="btn accent">+ Agregar Producto</button>
+      <button class="btn accent" (click)="openAddModal()">
+        + Agregar Producto
+      </button>
     </div>
   </header>
 
@@ -57,4 +59,10 @@
       </div>
     </div>
   </section>
+
+  <app-product-modal
+    *ngIf="showAddModal"
+    (save)="onModalSave($event)"
+    (cancel)="onModalCancel()"
+  ></app-product-modal>
 </div>

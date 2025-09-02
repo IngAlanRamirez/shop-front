@@ -2,16 +2,21 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { DashboardService } from '../dashboard.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ProductModalComponent } from './product-modal.component';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ProductModalComponent],
   styleUrls: ['./products.component.scss'],
   templateUrl: './products.component.html',
 })
 export class ProductsComponent {
   dashboardService = inject(DashboardService);
+  fb = inject(FormBuilder);
+  // modal is now a child component
+  showAddModal = false;
 
   products = [
     {
@@ -120,5 +125,26 @@ export class ProductsComponent {
       },
       error: (err) => console.error('Failed to load products', err),
     });
+  }
+
+  openAddModal() {
+    this.showAddModal = true;
+  }
+  onModalCancel() {
+    this.showAddModal = false;
+  }
+
+  onModalSave(newProd: any) {
+    // optimistically add to list
+    this.products = [newProd, ...this.products];
+    // optionally call API if implemented
+    const svc: any = this.dashboardService as any;
+    if (svc.createProduct) {
+      svc.createProduct(newProd).subscribe({
+        next: () => console.log('product created'),
+        error: (err: any) => console.error('create failed', err),
+      });
+    }
+    this.showAddModal = false;
   }
 }

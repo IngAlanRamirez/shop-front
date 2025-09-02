@@ -10,4 +10,8 @@ export class DashboardService {
   getAllProducts() {
     return this.http.get<any[]>('/products');
   }
+
+  createProduct(product: any) {
+    return this.http.post('/products', product);
+  }
 }
