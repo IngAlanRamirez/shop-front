@@ -1,4 +1,89 @@
-<div class="child-page">
-  <h2>Ordenes / Ventas</h2>
-  <p>Componente de órdenes/ventas.</p>
+<div class="child-page products-page">
+  <header class="topbar">
+    <div class="search">
+      <input placeholder="Buscar..." [formControl]="search" />
+    </div>
+    <div class="top-actions">
+      <!-- acciones futuras -->
+    </div>
+  </header>
+
+  <section class="content">
+    <div class="card">
+      <table class="products-table">
+        <thead>
+          <tr *ngIf="isProductList(); else salesHead">
+            <th>#</th>
+            <th>Nombre</th>
+            <th>SKU</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Tipo</th>
+            <th>Estado</th>
+            <th>Fecha</th>
+            <th>Usuario</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="isProductList(); else salesRows">
+            <tr *ngFor="let p of pagedSales; let i = index">
+              <td>{{ (page - 1) * pageSize + i + 1 }}</td>
+              <td>{{ p.name || '-' }}</td>
+              <td>{{ p.sku || '-' }}</td>
+              <td>{{ p.price | number : '1.2-2' }}</td>
+              <td>{{ p.stock_quantity ?? '-' }}</td>
+              <td>{{ p.type || '-' }}</td>
+              <td>
+                <span
+                  class="badge"
+                  [ngClass]="{
+                    'badge--active': p.status === 'Active',
+                    'badge--inactive': p.status === 'Inactive',
+                    'badge--pending': p.status === 'Pending'
+                  }"
+                >
+                  {{ p.status || '-' }}
+                </span>
+              </td>
+              <td>{{ p.created_at | date : 'mediumDate' }}</td>
+              <td>{{ p.user || '-' }}</td>
+            </tr>
+          </ng-container>
+
+          <ng-template #salesHead>
+            <tr>
+              <th>#</th>
+              <th>Usuario</th>
+              <th>Email</th>
+              <th>Ventas</th>
+              <th>Total</th>
+              <th>Fecha</th>
+            </tr>
+          </ng-template>
+
+          <ng-template #salesRows>
+            <tr *ngFor="let s of pagedSales; let i = index">
+              <td>{{ (page - 1) * pageSize + i + 1 }}</td>
+              <td>{{ s.user?.name || '-' }}</td>
+              <td>{{ s.user?.email || '-' }}</td>
+              <td>{{ s.products?.length || '-' }}</td>
+              <td>{{ s.total | number : '1.2-2' }}</td>
+              <td>{{ s.date | date : 'mediumDate' }}</td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </table>
+
+      <div class="pagination">
+        <div class="left">Mostrando {{ filteredSales.length }} resultados</div>
+        <div class="controls">
+          <button (click)="prev()" [disabled]="page <= 1">Anterior</button>
+          <span class="page">{{ page }} / {{ totalPages }}</span>
+          <button (click)="next()" [disabled]="page >= totalPages">
+            Siguiente
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
