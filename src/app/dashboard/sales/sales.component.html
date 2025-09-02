@@ -4,12 +4,15 @@
       <input placeholder="Buscar..." [formControl]="search" />
     </div>
     <div class="top-actions">
-      <!-- acciones futuras -->
+      <button class="btn accent" (click)="openSaleModal(saleModal)">
+        Agregar venta
+      </button>
     </div>
   </header>
 
   <section class="content">
     <div class="card">
+      <app-sale-modal #saleModal (saved)="loadSales()"></app-sale-modal>
       <table class="products-table">
         <thead>
           <tr *ngIf="isProductList(); else salesHead">
@@ -28,11 +31,11 @@
           <ng-container *ngIf="isProductList(); else salesRows">
             <tr *ngFor="let p of pagedSales; let i = index">
               <td>{{ (page - 1) * pageSize + i + 1 }}</td>
-              <td>{{ p.name || '-' }}</td>
-              <td>{{ p.sku || '-' }}</td>
-              <td>{{ p.price | number : '1.2-2' }}</td>
-              <td>{{ p.stock_quantity ?? '-' }}</td>
-              <td>{{ p.type || '-' }}</td>
+              <td>{{ p.name || "-" }}</td>
+              <td>{{ p.sku || "-" }}</td>
+              <td>{{ p.price | number : "1.2-2" }}</td>
+              <td>{{ p.stock_quantity ?? "-" }}</td>
+              <td>{{ p.type || "-" }}</td>
               <td>
                 <span
                   class="badge"
@@ -42,11 +45,11 @@
                     'badge--pending': p.status === 'Pending'
                   }"
                 >
-                  {{ p.status || '-' }}
+                  {{ p.status || "-" }}
                 </span>
               </td>
-              <td>{{ p.created_at | date : 'mediumDate' }}</td>
-              <td>{{ p.user || '-' }}</td>
+              <td>{{ p.created_at | date : "mediumDate" }}</td>
+              <td>{{ p.user || "-" }}</td>
             </tr>
           </ng-container>
 
@@ -64,11 +67,11 @@
           <ng-template #salesRows>
             <tr *ngFor="let s of pagedSales; let i = index">
               <td>{{ (page - 1) * pageSize + i + 1 }}</td>
-              <td>{{ s.user?.name || '-' }}</td>
-              <td>{{ s.user?.email || '-' }}</td>
-              <td>{{ s.products?.length || '-' }}</td>
-              <td>{{ s.total | number : '1.2-2' }}</td>
-              <td>{{ s.date | date : 'mediumDate' }}</td>
+              <td>{{ s.user?.name || "-" }}</td>
+              <td>{{ s.user?.email || "-" }}</td>
+              <td>{{ s.products?.length || "-" }}</td>
+              <td>{{ s.total | number : "1.2-2" }}</td>
+              <td>{{ s.date | date : "mediumDate" }}</td>
             </tr>
           </ng-template>
         </tbody>

@@ -1,0 +1,26 @@
+<div class="modal-backdrop" *ngIf="visible">
+  <div class="modal">
+    <h3>Crear venta</h3>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="field">
+        <label>User ID</label>
+        <input formControlName="userId" type="number" />
+      </div>
+
+      <div class="field">
+        <label>Fecha</label>
+        <input formControlName="date" type="date" />
+      </div>
+
+      <div class="field">
+        <label>Productos (JSON array, ejemplo: [&#123;"productId":1,"quantity":2&#125;, ...])</label>
+        <textarea formControlName="productsJson" rows="6"></textarea>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn" (click)="close()">Cancelar</button>
+        <button type="submit" class="btn accent" [disabled]="form.invalid">Crear</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { SalesService } from './sales.service';
+import { SaleModalComponent } from './sale-modal.component';
 
 @Component({
   selector: 'app-sales',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, SaleModalComponent],
   templateUrl: './sales.component.html',
   styleUrls: ['./sales.component.scss'],
 })
@@ -24,6 +25,10 @@ export class SalesComponent {
 
   ngOnInit(): void {
     this.loadSales();
+  }
+
+  openSaleModal(ref: any) {
+    ref.open();
   }
 
   loadSales() {
