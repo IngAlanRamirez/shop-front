@@ -18,11 +18,12 @@ import { DashboardService } from '../dashboard.service';
   styleUrls: ['./sale-modal.component.scss'],
 })
 export class SaleModalComponent {
+  salesService = inject(SalesService);
+  dashboardService = inject(DashboardService);
+
   @Output() saved = new EventEmitter<void>();
 
   fb = inject(FormBuilder);
-  salesService = inject(SalesService);
-  dashboardService = inject(DashboardService);
 
   form = this.fb.group({
     userId: [null, [Validators.required]],
