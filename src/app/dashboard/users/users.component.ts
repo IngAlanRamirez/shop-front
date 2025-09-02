@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UsersService } from './users.service';
 
-interface UserView {
+interface User {
   id: number;
   name: string;
   email: string;
@@ -18,7 +18,7 @@ interface UserView {
 })
 export class UsersComponent implements OnInit {
   usersService = inject(UsersService);
-  users: UserView[] = [];
+  users: User[] = [];
 
   /**
    * Retorna la clase CSS para el badge según el rol.
