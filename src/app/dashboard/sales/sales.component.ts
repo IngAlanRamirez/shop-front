@@ -5,11 +5,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-sales',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <div class="child-page">
-      <h2>Ordenes / Ventas</h2>
-      <p>Componente de órdenes/ventas.</p>
-    </div>
-  `,
+  templateUrl: './sales.component.html',
+  styleUrls: ['./sales.component.scss'],
 })
 export class SalesComponent {}
