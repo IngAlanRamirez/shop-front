@@ -1,15 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
+import { DashboardService } from './dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss',
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
+  dashboardService = inject(DashboardService);
+
   products = [
     {
       name: 'Cherry Delight',
@@ -103,5 +106,19 @@ export class DashboardComponent {
 
   next() {
     this.setPage(this.page + 1);
+  }
+
+  ngOnInit() {
+    this.loadProducts();
+  }
+
+  loadProducts() {
+    this.dashboardService.getAllProducts().subscribe({
+      next: (data: any[]) => {
+        console.log(data);
+        // this.products = data;
+      },
+      error: (err) => console.error('Failed to load products', err),
+    });
   }
 }
