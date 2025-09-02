@@ -78,6 +78,71 @@
   box-shadow: 0 8px 26px rgba(70, 140, 200, 0.18);
 }
 
+/* Products list and rows */
+.modal .products-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 280px;
+  overflow: auto;
+  padding: 6px 0;
+}
+
+.modal .product-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background: #fbfdff;
+  border: 1px solid #eef7fc;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.modal .product-row select {
+  flex: 1 1 auto;
+  min-width: 0; /* importante para que el select se reduzca en contenedores pequeños */
+}
+
+.modal .product-row input[type="number"] {
+  width: 96px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  text-align: right;
+}
+
+.modal .product-row .btn.small {
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #fff6f6;
+  color: #b22929;
+  border: 1px solid rgba(178, 41, 41, 0.08);
+}
+
+.modal .product-row .btn.small:hover {
+  background: #ffecec;
+}
+
+.modal .products-actions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 12px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.modal .products-actions .hint {
+  margin: 0;
+  color: #6b7b86;
+  font-size: 12px;
+}
+
+/* Disabled state for buttons */
+.modal .btn[disabled],
+.modal-actions .btn[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 @media (max-width: 640px) {
   .modal {
     width: calc(100% - 28px);
@@ -89,5 +154,12 @@
   }
   .modal-actions {
     gap: 8px;
+  }
+  .modal .product-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .modal .product-row input[type="number"] {
+    width: 100%;
   }
 }
