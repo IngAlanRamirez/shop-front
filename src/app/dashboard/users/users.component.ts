@@ -3,13 +3,8 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-users',
-  standalone: true,
   imports: [CommonModule],
-  template: `
-    <div class="child-page">
-      <h2>Usuarios</h2>
-      <p>Componente de usuarios.</p>
-    </div>
-  `,
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent {}
