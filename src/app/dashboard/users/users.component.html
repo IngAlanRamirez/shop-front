@@ -9,7 +9,6 @@
           <th>Nombre</th>
           <th>Email</th>
           <th>Rol</th>
-          <th>Creado</th>
           <th>Ventas</th>
         </tr>
       </thead>
@@ -23,7 +22,6 @@
               formatRole(u.role)
             }}</span>
           </td>
-          <td>{{ formatDate(u.created_at) }}</td>
           <td>{{ u.salesCount ? u.salesCount : 0 }}</td>
         </tr>
       </tbody>
