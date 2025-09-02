@@ -1,0 +1,65 @@
+.child-page {
+  h2 {
+    margin-bottom: 16px;
+    color: #22303a;
+  }
+
+  .users-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .users-table th {
+    text-align: left;
+    color: #6b7b86;
+    font-size: 13px;
+    padding: 10px 8px;
+    border-bottom: 1px solid #eef4fb;
+  }
+
+  .users-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #f5f9fc;
+    color: #23363f;
+  }
+
+  .users-table tbody tr:hover {
+    background: #fbfdff;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #eaf6ff;
+    color: #1672b9;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* Role badges colors */
+  .role-admin {
+    background: linear-gradient(90deg, #1672b9 0%, #4cc0ff 100%);
+    color: #fff;
+  }
+  .role-employee {
+    background: #e8f8ef;
+    color: #1b7a4a;
+  }
+  .role-client {
+    background: #fff7e8;
+    color: #a36b00;
+  }
+  .role-default {
+    background: #f3f6fb;
+    color: #0b69a3;
+  }
+
+  @media (max-width: 640px) {
+    .users-table th,
+    .users-table td {
+      padding: 8px 6px;
+      font-size: 13px;
+    }
+  }
+}
