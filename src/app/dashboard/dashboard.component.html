@@ -1,1 +1,75 @@
-<p>dashboard works!</p>
+<div class="dashboard-root">
+  <aside class="sidebar">
+    <div class="logo">Prueba</div>
+    <nav>
+      <ul>
+        <li class="active">Dashboard</li>
+        <li>Ordenes</li>
+        <li>Productos</li>
+        <li>Empleados</li>
+        <li>Clientes</li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-area">
+    <header class="topbar">
+      <div class="search">
+        <input placeholder="Buscar..." [formControl]="search" />
+      </div>
+      <div class="top-actions">
+        <select [formControl]="filterStatus">
+          <option value="all">Todos los estados</option>
+          <option value="Active">Activo</option>
+          <option value="Inactive">Inactivo</option>
+          <option value="On Sale">En Venta</option>
+          <option value="Bouncing">Rebotando</option>
+          <option value="Pending">Pendiente</option>
+        </select>
+
+        <button class="btn accent">+ Agregar Producto</button>
+      </div>
+    </header>
+
+    <section class="content">
+      <div class="card">
+        <table class="products-table">
+          <thead>
+            <tr>
+              <th>Nombre del Producto</th>
+              <th>ID del Producto</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Tipo</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of pagedProducts">
+              <td>{{ p.name }}</td>
+              <td>{{ p.sku }}</td>
+              <td>{{ p.price }}</td>
+              <td>{{ p.stock }}</td>
+              <td>{{ p.type }}</td>
+              <td>
+                <span class="badge">{{ p.status }}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <div class="left">
+            Mostrando {{ filteredProducts.length }} resultados
+          </div>
+          <div class="controls">
+            <button (click)="prev()" [disabled]="page <= 1">Anterior</button>
+            <span class="page">{{ page }} / {{ totalPages }}</span>
+            <button (click)="next()" [disabled]="page >= totalPages">
+              Siguiente
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
