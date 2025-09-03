@@ -22,7 +22,7 @@ export class ProductModalComponent {
   productForm: FormGroup = this.fb.group({
     name: ['', [Validators.required]],
     price: ['', [Validators.required]],
-    stock: ['', [Validators.required]],
+    stock_quantity: ['', [Validators.required]],
     type: [''],
     status: ['Active'],
   });

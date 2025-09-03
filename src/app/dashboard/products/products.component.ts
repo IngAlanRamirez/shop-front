@@ -5,6 +5,17 @@ import { DashboardService } from '../dashboard.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProductModalComponent } from './product-modal.component';
 
+interface Product {
+  id: number;
+  name: string;
+  sku: string;
+  stock_quantity: number;
+  price: number;
+  type: string;
+  status: string;
+  created_at?: Date;
+}
+
 @Component({
   selector: 'app-products',
   standalone: true,
@@ -17,14 +28,7 @@ export class ProductsComponent {
   fb = inject(FormBuilder);
   showAddModal = false;
 
-  products: Array<{
-    name: string;
-    sku: string;
-    stock: number;
-    price: number;
-    type: string;
-    status: string;
-  }> = [];
+  products: Product[] = [];
 
   // filtros reactivos
   search = new FormControl('');
@@ -45,7 +49,7 @@ export class ProductsComponent {
     return this.products.filter((p) => {
       const matchesQ =
         q === '' ||
-        [p.name, p.sku, p.stock, p.price, p.type, p.status]
+        [p.name, p.sku, p.stock_quantity, p.price, p.type, p.status]
           .join(' ')
           .toLowerCase()
           .includes(q);
@@ -84,7 +88,7 @@ export class ProductsComponent {
 
   loadProducts() {
     this.dashboardService.getAllProducts().subscribe({
-      next: (data: any[]) => {
+      next: (data: Product[]) => {
         console.log('loaded products', data);
         this.products = data;
       },
@@ -95,6 +99,7 @@ export class ProductsComponent {
   openAddModal() {
     this.showAddModal = true;
   }
+
   onModalCancel() {
     this.showAddModal = false;
   }
