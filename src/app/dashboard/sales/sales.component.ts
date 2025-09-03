@@ -32,13 +32,63 @@ export class SalesComponent {
 
   loadSales() {
     this.salesService.getSales().subscribe({
-      next: (data: any[]) => (this.sales = data || []),
+      next: (data: any) => {
+        if (data.length > 0 && data[0].productId && data[0].saleId) {
+          this.sales = data.map((item: any) => ({
+            productId: item.productId,
+            productName: item.productName,
+            quantity: item.quantity,
+            unitPrice:
+              typeof item.unitPrice === 'string'
+                ? parseFloat(item.unitPrice)
+                : item.unitPrice,
+            subtotal:
+              typeof item.subtotal === 'string'
+                ? parseFloat(item.subtotal)
+                : item.subtotal,
+            saleId: item.saleId,
+            userId: item.userId,
+            sellerName: item.sellerName,
+            saleDate: item.saleDate,
+          }));
+        } else {
+          this.sales = data.map((s: any) => ({
+            id: s.id,
+            total: s.total,
+            date: s.date,
+            user:
+              s.user ||
+              (s.userId || s.userName
+                ? { id: s.userId, name: s.userName, email: s.userEmail || null }
+                : null),
+            products: Array.isArray(s.saleDetails)
+              ? s.saleDetails.map((d: any) => ({
+                  id: d.productId,
+                  name: d.productName,
+                  quantity: d.quantity,
+                  unitPrice: d.unitPrice,
+                  subtotal: d.subtotal,
+                }))
+              : Array.isArray(s.products)
+              ? s.products
+              : [],
+          }));
+        }
+
+        // reset paginación al recargar
+        this.page = 1;
+      },
       error: (err) => console.error('Failed to load sales', err),
     });
   }
 
   isProductList(): boolean {
-    return this.sales.length > 0 && !!this.sales[0].name && !!this.sales[0].sku;
+    return (
+      this.sales.length > 0 &&
+      (!!this.sales[0].productId ||
+        !!this.sales[0].productName ||
+        !!this.sales[0].unitPrice)
+    );
   }
 
   get filteredSales() {

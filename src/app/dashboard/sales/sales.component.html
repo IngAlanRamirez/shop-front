@@ -19,10 +19,10 @@
             <th>#</th>
             <th>Nombre</th>
             <th>SKU</th>
-            <th>Precio</th>
-            <th>Stock</th>
-            <th>Tipo</th>
-            <th>Estado</th>
+            <th>Precio unit.</th>
+            <th>Cantidad</th>
+            <th>Venta ID</th>
+            <th>Subtotal</th>
             <th>Fecha</th>
             <th>Usuario</th>
           </tr>
@@ -31,25 +31,14 @@
           <ng-container *ngIf="isProductList(); else salesRows">
             <tr *ngFor="let p of pagedSales; let i = index">
               <td>{{ (page - 1) * pageSize + i + 1 }}</td>
-              <td>{{ p.name || "-" }}</td>
-              <td>{{ p.sku || "-" }}</td>
-              <td>{{ p.price | number : "1.2-2" }}</td>
-              <td>{{ p.stock_quantity ?? "-" }}</td>
-              <td>{{ p.type || "-" }}</td>
-              <td>
-                <span
-                  class="badge"
-                  [ngClass]="{
-                    'badge--active': p.status === 'Active',
-                    'badge--inactive': p.status === 'Inactive',
-                    'badge--pending': p.status === 'Pending'
-                  }"
-                >
-                  {{ p.status || "-" }}
-                </span>
-              </td>
-              <td>{{ p.created_at | date : "mediumDate" }}</td>
-              <td>{{ p.user || "-" }}</td>
+              <td>{{ p.productName || "-" }}</td>
+              <td>{{ p.productId ?? "-" }}</td>
+              <td>{{ p.unitPrice | number : "1.2-2" }}</td>
+              <td>{{ p.quantity ?? "-" }}</td>
+              <td>{{ p.saleId ?? "-" }}</td>
+              <td>{{ p.subtotal | number : "1.2-2" }}</td>
+              <td>{{ p.saleDate | date : "mediumDate" }}</td>
+              <td>{{ p.sellerName || "-" }}</td>
             </tr>
           </ng-container>
 
