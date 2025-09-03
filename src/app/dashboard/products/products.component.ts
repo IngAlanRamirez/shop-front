@@ -15,7 +15,6 @@ import { ProductModalComponent } from './product-modal.component';
 export class ProductsComponent {
   dashboardService = inject(DashboardService);
   fb = inject(FormBuilder);
-  // modal is now a child component
   showAddModal = false;
 
   products: Array<{
@@ -101,7 +100,6 @@ export class ProductsComponent {
   }
 
   onModalSave(newProd: any) {
-    // Call API to create product and update table on success
     const svc: any = this.dashboardService as any;
     if (svc.createProduct) {
       svc.createProduct(newProd).subscribe({

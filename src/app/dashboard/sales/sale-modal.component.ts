@@ -37,17 +37,14 @@ export class SaleModalComponent {
 
   open() {
     this.visible = true;
-    // ensure at least one item to start
     if (this.items.length === 0) this.addItem();
   }
 
   close() {
     this.visible = false;
-    // clear products form array
     while (this.items.length) {
       this.items.removeAt(0);
     }
-    // reset other controls and state
     this.form.reset();
     this.form.markAsPristine();
     this.form.markAsUntouched();
@@ -85,7 +82,6 @@ export class SaleModalComponent {
       });
   }
 
-  // helpers for form array
   get items(): FormArray {
     return this.form.get('products') as FormArray;
   }

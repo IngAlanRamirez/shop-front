@@ -14,7 +14,6 @@ import { SaleModalComponent } from './sale-modal.component';
 export class SalesComponent {
   salesService = inject(SalesService);
 
-  // sales puede ser un array de ventas o un array de productos (según endpoint)
   sales: any[] = [];
   // filtros
   search = new FormControl('');
@@ -38,7 +37,6 @@ export class SalesComponent {
     });
   }
 
-  // Detecta si la lista contiene objetos de producto (tienen 'name' y 'sku')
   isProductList(): boolean {
     return this.sales.length > 0 && !!this.sales[0].name && !!this.sales[0].sku;
   }
@@ -83,6 +81,5 @@ export interface Sale {
   total: number;
   date: string;
   user: { id?: number; name?: string; email?: string } | null;
-  // products or counts may vary depending on backend
   products?: Array<{ id: number; quantity?: number }>;
 }
