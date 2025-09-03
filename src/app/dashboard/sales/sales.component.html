@@ -67,7 +67,7 @@
       </table>
 
       <div class="pagination">
-        <div class="left">Mostrando {{ filteredSales.length }} resultados</div>
+        <div class="left">Total de ventas: {{ filteredSales.length }}</div>
         <div class="controls">
           <button (click)="prev()" [disabled]="page <= 1">Anterior</button>
           <span class="page">{{ page }} / {{ totalPages }}</span>
